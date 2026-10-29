@@ -1,5 +1,25 @@
 # TutorTrack team implementation context
 
+## Separate documentation workflow audit — 29 October 2026 (SGT)
+
+- Owner: Min Thi Ha (`toomintyy`); branch `docs-workflow-audit`, based on team
+  master `f36d03b6` after PR #114 merged. The owner requested a separately
+  reviewable branch for cross-cutting documentation, rather than adding it to
+  the still-open selection PR #115. Merged work is preserved in team history.
+- Scope: general testing-workflow matrix for atomic attendance/deletion, contact
+  correction and legacy recovery, plus correction of a stale DG paragraph that
+  claimed the newly updated model diagram omitted student fields. No selection
+  feature, Java, test-source, build-configuration or diagram-image changes.
+- Select-specific UG/DG/requirements/manual checks and test guidance stay with
+  PR #115. This branch is independent and does not assume select is implemented.
+- Validation: `./gradlew check coverage --no-daemon` passed on macOS / Zulu
+  Java 25.0.3 FX: **439 tests**, zero failures/errors/skips, style and coverage
+  passed. Referenced test classes exist; repository/whitespace checks passed.
+  Jekyll rendering remains unavailable due to missing locked Bundler 2.5.11;
+  no dependency or lockfile changes made. Windows/manual packaging unverified.
+- Status: prepared for commit/push so the owner can create a separate PR.
+  No PR created. Assistance: OpenAI Codex.
+
 ## Preserve concurrent team documentation refresh — 29 October 2026 (SGT)
 
 - Integrated newly arrived team master `331ce46f` / PR #116 into PR #114.

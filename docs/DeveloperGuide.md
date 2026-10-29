@@ -180,10 +180,10 @@ course/week means Unrecorded. Check `isStudent()` before using legacy-only gette
 See [Add-student integration](#add-student-integration-v13) and
 [Record and correct attendance](#record-and-correct-attendance) for implementation details.
 
-This inherited diagram shows shared and legacy contact fields. Student profiles
-use the same `Person` class, with a `TelegramHandle`, course/group memberships and
-attendance records instead of legacy phone/address fields. Those student fields
-are omitted from this diagram; see the add-student and attendance sections below.
+The diagram includes shared, student and legacy relationships. The table above
+states which relationships are present for each representation; the associations
+show multiplicities across both. See the add-student and attendance sections for
+construction, persistence and course/week behavior.
 
 The `Model` component,
 

@@ -24,6 +24,22 @@ You can run tests in two ways.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## TutorTrack regression checks
+
+Run `./gradlew check coverage` (Windows: `gradlew.bat check coverage`) for the full
+suite, code style and coverage checks. Focused tests supplement this full run:
+
+| Area | Relevant tests |
+| --- | --- |
+| Atomic multi-index attendance, deduplication, enrolment/bounds and unchanged batches | `MarkCommandParserTest`, `MarkCommandTest`, `AttendanceIntegrationTest`, `MvpRosterUiTest` |
+| Batch deletion, save-before-live-update and retry | `MvpRosterIntegrationTest`, `MvpRosterUiTest` |
+| Contact correction and attendance preservation | `StudentUpdateIntegrationTest` |
+| Legacy edit/Help recovery and read-only Help | `LegacyRecoveryIntegrationTest` |
+
+Use synthetic data and temporary storage. A passing suite does not establish
+packaged-JAR behavior or cross-platform keyboard navigation; see the DG's manual
+checks for batch attendance/deletion and launch/reload workflows.
+
 ## Types of tests
 
 This project has three types of tests:
