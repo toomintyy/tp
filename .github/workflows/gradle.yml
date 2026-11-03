@@ -45,11 +45,11 @@ jobs:
 
       - name: Build and check with Gradle
         if: runner.os != 'Linux'
-        run: ./gradlew --init-script release-diagnostics.gradle check coverage shadowJar
+        run: ./gradlew --init-script release-diagnostics.gradle test coverage shadowJar
 
       - name: Build and check with Gradle using a virtual display
         if: runner.os == 'Linux'
-        run: xvfb-run -a ./gradlew --init-script release-diagnostics.gradle check coverage shadowJar
+        run: xvfb-run -a ./gradlew --init-script release-diagnostics.gradle test coverage shadowJar
 
       - name: Save diagnostic reports
         if: always()
