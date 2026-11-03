@@ -5,6 +5,9 @@ import static seedu.address.testutil.FxTestUtil.initializeToolkit;
 import static seedu.address.testutil.FxTestUtil.runOnFxThread;
 
 import java.nio.file.Path;
+import java.nio.file.Files;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -70,6 +73,21 @@ public class SmallWindowUiTest {
                     stage.getScene().getRoot().layout();
                     ListView<?> roster = (ListView<?>) stage.getScene().lookup("#personListView");
                     Node details = stage.getScene().lookup("#studentDetailsPane");
+                    System.out.println("WINDOW_DIAGNOSTICS os=" + System.getProperty("os.name")
+                            + " stage=" + stage.getWidth() + "x" + stage.getHeight()
+                            + " scene=" + stage.getScene().getWidth() + "x" + stage.getScene().getHeight()
+                            + " roster=" + roster.getHeight() + " details=" + details.getBoundsInLocal()
+                            + " result=" + stage.getScene().lookup("#resultDisplayPlaceholder").getBoundsInLocal());
+                    var snapshot = stage.getScene().snapshot(null);
+                    BufferedImage copy = new BufferedImage((int) snapshot.getWidth(), (int) snapshot.getHeight(),
+                            BufferedImage.TYPE_INT_ARGB);
+                    for (int y = 0; y < copy.getHeight(); y++) {
+                        for (int x = 0; x < copy.getWidth(); x++) {
+                            copy.setRGB(x, y, snapshot.getPixelReader().getArgb(x, y));
+                        }
+                    }
+                    Files.createDirectories(Path.of("build/reports"));
+                    ImageIO.write(copy, "png", Path.of("build/reports/small-window.png").toFile());
                     measured.complete(new double[]{stage.getHeight(), roster.getHeight(),
                         input.localToScene(input.getBoundsInLocal()).getMinY(),
                         details.localToScene(details.getBoundsInLocal()).getMaxY(), stage.getScene().getHeight()});
